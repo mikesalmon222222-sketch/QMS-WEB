@@ -17,32 +17,28 @@ function Header() {
   const isActive = (path) => location.pathname === path
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+    <header className="header-modern sticky top-0 z-50">
+      <div className="container">
+        <div className="flex-between py-4">
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <div className="bg-primary-600 text-white px-4 py-2 rounded-lg font-bold text-xl">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-xl font-bold text-xl shadow-lg">
                 QCS
               </div>
-              <span className="ml-3 text-xl font-bold text-secondary-800">
+              <span className="ml-3 text-xl font-bold text-secondary-800 hidden sm:block">
                 Quantum Concierge Services
               </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden md:flex space-x-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  isActive(item.href)
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-secondary-600 hover:text-primary-600 hover:bg-gray-50'
-                }`}
+                className={`nav-link ${isActive(item.href) ? 'active' : ''}`}
               >
                 {item.name}
               </Link>
@@ -53,7 +49,7 @@ function Header() {
           <div className="flex items-center space-x-4">
             <Link
               to="/contact"
-              className="bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors duration-200"
+              className="btn btn-primary hidden sm:inline-flex"
             >
               Request a Quote
             </Link>
@@ -61,7 +57,7 @@ function Header() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-md text-secondary-600 hover:text-primary-600 hover:bg-gray-100"
+              className="md:hidden p-3 rounded-xl text-secondary-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-200"
             >
               <svg
                 className="h-6 w-6"
@@ -82,21 +78,24 @@ function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden pb-4">
-            <nav className="flex flex-col space-y-2">
+            <nav className="flex flex-col space-y-1 bg-white rounded-xl p-4 shadow-xl mt-2">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                    isActive(item.href)
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-secondary-600 hover:text-primary-600 hover:bg-gray-50'
-                  }`}
+                  className={`nav-link ${isActive(item.href) ? 'active' : ''}`}
                 >
                   {item.name}
                 </Link>
               ))}
+              <Link
+                to="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="btn btn-primary mt-3"
+              >
+                Request a Quote
+              </Link>
             </nav>
           </div>
         )}

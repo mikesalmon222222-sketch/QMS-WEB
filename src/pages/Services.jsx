@@ -66,50 +66,49 @@ function Services() {
   ]
 
   return (
-    <div className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="section-modern section-light">
+      <div className="container">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-800 mb-6">
+        <div className="text-center mb-16 animate-fade-up">
+          <h1 className="section-title">
             Our Services
           </h1>
-          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
+          <p className="section-subtitle">
             Comprehensive procurement solutions designed to meet the unique needs of government agencies and commercial organizations
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-3">
           {services.map((service, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 relative"
-            >
+            <div key={index} className="card relative">
               {service.highlight && (
-                <div className="absolute -top-3 -right-3 bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute -top-3 -right-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
                   {service.highlight}
                 </div>
               )}
               
-              <div className="text-primary-600 mb-6">
+              <div className="card-icon mx-auto">
                 {service.icon}
               </div>
               
-              <h3 className="text-2xl font-bold text-secondary-800 mb-4">
+              <h3 className="text-2xl font-bold text-secondary-800 mb-4 text-center">
                 {service.title}
               </h3>
               
-              <p className="text-secondary-600 mb-6">
+              <p className="text-secondary-600 mb-6 text-center">
                 {service.description}
               </p>
               
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {service.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center text-secondary-600">
-                    <svg className="h-4 w-4 text-primary-600 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    {feature}
+                  <li key={featureIndex} className="flex items-center text-secondary-700">
+                    <div className="w-5 h-5 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                      <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="font-medium">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -118,44 +117,44 @@ function Services() {
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="mt-20 bg-gray-50 rounded-2xl p-12">
+        <div className="mt-20 card">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-800 mb-4">
+            <h2 className="section-title">
               Why Choose Quantum Concierge Services?
             </h2>
-            <p className="text-lg text-secondary-600">
+            <p className="section-subtitle">
               Our comprehensive approach ensures your procurement needs are met with precision and professionalism
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-3">
             <div className="text-center">
-              <div className="bg-primary-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <svg className="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="card-icon mx-auto bg-gradient-to-r from-blue-500 to-blue-600">
+                <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-secondary-800 mb-2">Fast Delivery</h3>
+              <h3 className="text-xl font-bold text-secondary-800 mb-3">Fast Delivery</h3>
               <p className="text-secondary-600">Quick turnaround times to meet your urgent procurement deadlines</p>
             </div>
             
             <div className="text-center">
-              <div className="bg-primary-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <svg className="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="card-icon mx-auto bg-gradient-to-r from-emerald-500 to-emerald-600">
+                <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-secondary-800 mb-2">Compliance Assured</h3>
+              <h3 className="text-xl font-bold text-secondary-800 mb-3">Compliance Assured</h3>
               <p className="text-secondary-600">Full regulatory compliance for all government procurement requirements</p>
             </div>
             
             <div className="text-center">
-              <div className="bg-primary-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <svg className="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="card-icon mx-auto bg-gradient-to-r from-amber-500 to-amber-600">
+                <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-secondary-800 mb-2">Competitive Pricing</h3>
+              <h3 className="text-xl font-bold text-secondary-800 mb-3">Competitive Pricing</h3>
               <p className="text-secondary-600">Best value solutions that maximize your budget efficiency</p>
             </div>
           </div>
@@ -166,20 +165,14 @@ function Services() {
           <h2 className="text-3xl font-bold text-secondary-800 mb-6">
             Ready to Get Started?
           </h2>
-          <p className="text-lg text-secondary-600 mb-8">
-            Contact us today to discuss your specific procurement needs and how we can help streamline your operations
+          <p className="text-lg text-secondary-600 mb-8 max-w-2xl mx-auto">
+            Contact us today to discuss your specific procurement needs and how we can help streamline your operations with our proven expertise.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-700 transition-colors duration-200"
-            >
+            <Link to="/contact" className="btn btn-primary">
               Request a Quote
             </Link>
-            <Link
-              to="/team"
-              className="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-600 hover:text-white transition-colors duration-200"
-            >
+            <Link to="/team" className="btn btn-secondary">
               Meet Our Team
             </Link>
           </div>

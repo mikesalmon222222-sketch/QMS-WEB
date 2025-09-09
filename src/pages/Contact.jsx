@@ -38,19 +38,19 @@ This request was submitted through the Quantum Concierge Services website.`
   }
 
   return (
-    <div className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="section-modern section-light">
+      <div className="container">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-800 mb-6">
+        <div className="text-center mb-16 animate-fade-up">
+          <h1 className="section-title">
             Contact Us
           </h1>
-          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
+          <p className="section-subtitle">
             Ready to streamline your procurement process? Get in touch with our team to discuss your specific needs and receive a customized quote.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-2">
           {/* Contact Form */}
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h2 className="text-2xl font-bold text-secondary-800 mb-6">Request a Quote</h2>
