@@ -14,8 +14,8 @@ function Footer() {
 
   const verificationLogos = [
     { name: 'BBB', href: '#', alt: 'Better Business Bureau' },
-    { name: 'LinkedIn', href: '#', alt: 'LinkedIn Verified' },
-    { name: 'D-U-N-S', href: '#', alt: 'Dun & Bradstreet' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/jack-baker-469a82361/', alt: 'LinkedIn Verified' },
+    { name: 'D-U-N-S', href: 'https://www.dnb.com/duns-number/lookup.html', alt: 'Dun & Bradstreet' },
     { name: 'GovTribe', href: '#', alt: 'GovTribe Verified' },
   ]
 
@@ -26,10 +26,12 @@ function Footer() {
           {/* Company Logo */}
           <div className="footer-section">
             <div className="flex items-center mb-4">
-              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-3 py-2 rounded-xl font-bold text-lg shadow-lg">
-                QCS
-              </div>
-              <span className="ml-3 text-lg font-bold text-white">
+              <img 
+                src="/quantum-logo.svg" 
+                alt="Quantum Concierge Services Logo" 
+                className="h-8 w-auto mr-3 hover:scale-105 transition-transform duration-200"
+              />
+              <span className="text-lg font-bold text-white">
                 Quantum Concierge Services
               </span>
             </div>
@@ -85,8 +87,8 @@ function Footer() {
                 <a
                   key={logo.name}
                   href={logo.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={logo.href !== '#' ? '_blank' : '_self'}
+                  rel={logo.href !== '#' ? 'noopener noreferrer' : undefined}
                   className="verification-badge"
                   title={logo.alt}
                 >
