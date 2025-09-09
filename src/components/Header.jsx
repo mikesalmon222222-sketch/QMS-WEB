@@ -23,10 +23,12 @@ function Header() {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-xl font-bold text-xl shadow-lg">
-                QCS
-              </div>
-              <span className="ml-3 text-xl font-bold text-secondary-800 hidden sm:block">
+              <img 
+                src="/quantum-logo.svg" 
+                alt="Quantum Concierge Services Logo" 
+                className="h-10 w-auto hover:scale-105 transition-transform duration-200"
+              />
+              <span className="ml-3 text-xl font-bold text-secondary-800 hidden lg:block">
                 Quantum Concierge Services
               </span>
             </Link>
