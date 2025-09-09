@@ -32,66 +32,66 @@ function About() {
   ]
 
   return (
-    <div className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="section-modern section-light">
+      <div className="container">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-800 mb-6">
+        <div className="text-center mb-16 animate-fade-up">
+          <h1 className="section-title">
             About Quantum Concierge Services
           </h1>
-          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
+          <p className="section-subtitle">
             Your trusted partner in procurement excellence, dedicated to providing innovative solutions for government and commercial organizations nationwide.
           </p>
         </div>
 
         {/* Mission Statement */}
-        <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white rounded-2xl p-12 mb-16">
+        <div className="card mb-16">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="section-title">
               Our Mission
             </h2>
-            <p className="text-xl text-primary-100 mb-8 max-w-4xl mx-auto leading-relaxed">
+            <p className="section-subtitle mb-8">
               To revolutionize procurement by delivering exceptional service, innovative solutions, and unwavering integrity. We are committed to making procurement processes seamless, efficient, and cost-effective for organizations that serve our communities and nation.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div className="grid grid-3 mt-12">
               <div className="text-center">
-                <div className="bg-white bg-opacity-20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <div className="card-icon mx-auto mb-4">
                   <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Speed</h3>
-                <p className="text-primary-100 text-sm">Rapid response times and efficient delivery to meet your urgent needs</p>
+                <p className="text-secondary-600 text-sm">Rapid response times and efficient delivery to meet your urgent needs</p>
               </div>
               
               <div className="text-center">
-                <div className="bg-white bg-opacity-20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <div className="card-icon mx-auto mb-4">
                   <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Quality</h3>
-                <p className="text-primary-100 text-sm">Premium products and services that exceed expectations every time</p>
+                <p className="text-secondary-600 text-sm">Premium products and services that exceed expectations every time</p>
               </div>
               
               <div className="text-center">
-                <div className="bg-white bg-opacity-20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <div className="card-icon mx-auto mb-4">
                   <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Care</h3>
-                <p className="text-primary-100 text-sm">Personal attention and dedicated support for every client relationship</p>
+                <p className="text-secondary-600 text-sm">Personal attention and dedicated support for every client relationship</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Company Story */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-2 mb-16">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-800 mb-6">
+            <h2 className="section-title">
               Our Story
             </h2>
             <div className="space-y-6 text-secondary-600">
@@ -111,40 +111,48 @@ function About() {
           </div>
 
           <div className="space-y-8">
-            <div className="bg-white rounded-lg shadow-lg p-8">
+            <div className="card">
               <h3 className="text-2xl font-bold text-secondary-800 mb-4">Why We Exist</h3>
               <p className="text-secondary-600 mb-4">
                 We believe that procurement should be a strategic advantage, not an operational burden. Our mission is to transform how organizations approach purchasing, making it:
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center text-secondary-600">
-                  <svg className="h-4 w-4 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
+                  <div className="w-4 h-4 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <svg className="h-2 w-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
                   Faster and more efficient
                 </li>
                 <li className="flex items-center text-secondary-600">
-                  <svg className="h-4 w-4 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
+                  <div className="w-4 h-4 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <svg className="h-2 w-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
                   Fully compliant and transparent
                 </li>
                 <li className="flex items-center text-secondary-600">
-                  <svg className="h-4 w-4 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
+                  <div className="w-4 h-4 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <svg className="h-2 w-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
                   Cost-effective and value-driven
                 </li>
                 <li className="flex items-center text-secondary-600">
-                  <svg className="h-4 w-4 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
+                  <div className="w-4 h-4 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <svg className="h-2 w-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
                   Environmentally responsible
                 </li>
               </ul>
             </div>
 
-            <div className="bg-primary-50 rounded-lg p-8">
+            <div className="card">
               <h3 className="text-2xl font-bold text-secondary-800 mb-4">Our Commitment</h3>
               <p className="text-secondary-600">
                 Every client relationship is built on trust, transparency, and results. We don't just fulfill orders – we become your strategic procurement partner, understanding your unique needs and delivering solutions that support your long-term success.
@@ -156,18 +164,18 @@ function About() {
         {/* Company Milestones */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-800 mb-4">
+            <h2 className="section-title">
               Our Journey
             </h2>
-            <p className="text-lg text-secondary-600">
+            <p className="section-subtitle">
               Key milestones in our growth and development as a procurement leader
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-4">
             {milestones.map((milestone, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-6 text-center">
-                <div className="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-sm font-bold mx-auto mb-4">
+              <div key={index} className="card text-center">
+                <div className="card-icon mx-auto mb-4">
                   {milestone.year}
                 </div>
                 <h3 className="text-lg font-bold text-secondary-800 mb-3">
@@ -182,20 +190,20 @@ function About() {
         </div>
 
         {/* Certifications and Credentials */}
-        <div className="bg-gray-50 rounded-2xl p-12 mb-16">
+        <div className="card mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-800 mb-4">
+            <h2 className="section-title">
               Certifications & Credentials
             </h2>
-            <p className="text-lg text-secondary-600">
+            <p className="section-subtitle">
               Our commitment to excellence is recognized by leading industry organizations
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="certification-grid">
             {certifications.map((cert, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 text-center shadow-md">
-                <div className="bg-primary-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+              <div key={index} className="certification-badge">
+                <div className="card-icon mx-auto mb-4">
                   <svg className="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>

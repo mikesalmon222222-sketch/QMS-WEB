@@ -53,27 +53,27 @@ function CoreValues() {
   ]
 
   return (
-    <div className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="section-modern section-light">
+      <div className="container">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-800 mb-6">
+        <div className="text-center mb-16 animate-fade-up">
+          <h1 className="section-title">
             Our Core Values
           </h1>
-          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
+          <p className="section-subtitle">
             The principles that guide our business practices and drive our commitment to excellence in procurement services
           </p>
         </div>
 
         {/* Values Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-3">
           {values.map((value, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+              className="card value-card"
             >
               {/* Icon */}
-              <div className="text-primary-600 mb-6 text-center">
+              <div className="card-icon mx-auto">
                 {value.icon}
               </div>
               
@@ -98,9 +98,11 @@ function CoreValues() {
                 <ul className="space-y-2">
                   {value.keyPoints.map((point, pointIndex) => (
                     <li key={pointIndex} className="flex items-start text-secondary-600">
-                      <svg className="h-4 w-4 text-primary-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
+                      <div className="w-5 h-5 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
                       <span className="text-sm">{point}</span>
                     </li>
                   ))}
@@ -111,58 +113,58 @@ function CoreValues() {
         </div>
 
         {/* Values in Action Section */}
-        <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white rounded-2xl p-12 mb-16">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <div className="mt-16 card">
+          <div className="text-center mb-12">
+            <h2 className="section-title">
               Values in Action
             </h2>
-            <p className="text-xl text-primary-100 mb-8 max-w-4xl mx-auto">
+            <p className="section-subtitle">
               These core values are not just words on a page - they are the driving force behind every decision we make, every relationship we build, and every solution we deliver to our clients.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-3 mt-8">
               <div className="text-center">
-                <div className="bg-white bg-opacity-20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold">100%</span>
+                <div className="stats-card">
+                  <span className="stats-number">100%</span>
+                  <span className="stats-label">Transparent Practices</span>
+                  <p className="text-primary-100 text-sm mt-2">Every transaction is conducted with complete honesty and openness</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Transparent Practices</h3>
-                <p className="text-primary-100 text-sm">Every transaction is conducted with complete honesty and openness</p>
               </div>
               
               <div className="text-center">
-                <div className="bg-white bg-opacity-20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold">24/7</span>
+                <div className="stats-card">
+                  <span className="stats-number">24/7</span>
+                  <span className="stats-label">Innovation Focus</span>
+                  <p className="text-primary-100 text-sm mt-2">Continuously developing new solutions to serve our clients better</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Innovation Focus</h3>
-                <p className="text-primary-100 text-sm">Continuously developing new solutions to serve our clients better</p>
               </div>
               
               <div className="text-center">
-                <div className="bg-white bg-opacity-20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold">1st</span>
+                <div className="stats-card">
+                  <span className="stats-number">1st</span>
+                  <span className="stats-label">Client Priority</span>
+                  <p className="text-primary-100 text-sm mt-2">Your success is always our number one priority in every engagement</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Client Priority</h3>
-                <p className="text-primary-100 text-sm">Your success is always our number one priority in every engagement</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* How We Apply Our Values */}
-        <div className="bg-gray-50 rounded-2xl p-12">
+        <div className="mt-16 card">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-800 mb-4">
+            <h2 className="section-title">
               How We Apply Our Values
             </h2>
-            <p className="text-lg text-secondary-600">
+            <p className="section-subtitle">
               See how our core values translate into tangible benefits for your organization
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-2">
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="bg-primary-100 p-3 rounded-full mr-4 flex-shrink-0">
+                <div className="card-icon bg-primary-100 mr-4">
                   <svg className="h-6 w-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -174,7 +176,7 @@ function CoreValues() {
               </div>
               
               <div className="flex items-start">
-                <div className="bg-primary-100 p-3 rounded-full mr-4 flex-shrink-0">
+                <div className="card-icon bg-primary-100 mr-4">
                   <svg className="h-6 w-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -188,7 +190,7 @@ function CoreValues() {
             
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="bg-primary-100 p-3 rounded-full mr-4 flex-shrink-0">
+                <div className="card-icon bg-primary-100 mr-4">
                   <svg className="h-6 w-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
@@ -200,7 +202,7 @@ function CoreValues() {
               </div>
               
               <div className="flex items-start">
-                <div className="bg-primary-100 p-3 rounded-full mr-4 flex-shrink-0">
+                <div className="card-icon bg-primary-100 mr-4">
                   <svg className="h-6 w-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
@@ -216,23 +218,17 @@ function CoreValues() {
 
         {/* CTA Section */}
         <div className="mt-16 text-center">
-          <h2 className="text-3xl font-bold text-secondary-800 mb-6">
+          <h2 className="section-title">
             Experience Our Values in Action
           </h2>
-          <p className="text-lg text-secondary-600 mb-8">
+          <p className="section-subtitle mb-8">
             Ready to work with a procurement partner who puts integrity, innovation, and your success first?
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-700 transition-colors duration-200"
-            >
+            <Link to="/contact" className="btn btn-primary">
               Start Your Partnership
             </Link>
-            <Link
-              to="/about"
-              className="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-600 hover:text-white transition-colors duration-200"
-            >
+            <Link to="/about" className="btn btn-secondary">
               Learn More About Us
             </Link>
           </div>
