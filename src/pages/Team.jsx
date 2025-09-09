@@ -24,7 +24,7 @@ function Team() {
       description: 'Specializing in procurement management and client relations. Joe is your primary point of contact for procurement needs and ensures all requirements are met with precision and timeliness.',
       image: null, // Placeholder - will use initials
       contact: {
-        email: 'joe@quantumsrv.com',
+        email: 'joe.root@quantumsrv.com',
         phone: '+1 859-287-2983'
       }
     }
@@ -226,7 +226,7 @@ function Team() {
               Get in Touch
             </Link>
             <a
-              href="mailto:joe@quantumsrv.com"
+              href="mailto:joe.root@quantumsrv.com"
               className="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-600 hover:text-white transition-colors duration-200"
             >
               Email Joe Directly

@@ -1,16 +1,5 @@
-import { Link } from 'react-router-dom'
-
 function Footer() {
   const currentYear = new Date().getFullYear()
-
-  const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Core Values', href: '/core-values' },
-    { name: 'Team', href: '/team' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'About Us', href: '/about' },
-  ]
 
   const verificationLogos = [
     { name: 'BBB', href: '#', alt: 'Better Business Bureau' },
@@ -40,20 +29,15 @@ function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Services Overview */}
           <div className="footer-section">
-            <h3 className="footer-title">Quick Links</h3>
-            <nav className="flex flex-col space-y-1">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="footer-link"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
+            <h3 className="footer-title">Our Services</h3>
+            <div className="flex flex-col space-y-1">
+              <span className="text-secondary-400 text-sm">Government Contracting</span>
+              <span className="text-secondary-400 text-sm">Supply Chain Management</span>
+              <span className="text-secondary-400 text-sm">Procurement Consulting</span>
+              <span className="text-secondary-400 text-sm">Contract-Ready Support</span>
+            </div>
           </div>
 
           {/* Contact Info */}
@@ -64,8 +48,8 @@ function Footer() {
                 <svg className="h-5 w-5 text-primary-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:joe@quantumsrv.com" className="footer-link">
-                  joe@quantumsrv.com
+                <a href="mailto:joe.root@quantumsrv.com" className="footer-link">
+                  joe.root@quantumsrv.com
                 </a>
               </div>
               <div className="flex items-center">
