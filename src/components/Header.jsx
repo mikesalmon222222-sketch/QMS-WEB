@@ -35,7 +35,7 @@ function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-2">
+          <nav className="desktop-nav">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -48,10 +48,10 @@ function Header() {
           </nav>
 
           {/* CTA Button & Mobile menu button */}
-          <div className="flex items-center space-x-4">
+          <div className="header-actions">
             <Link
               to="/contact"
-              className="btn btn-primary hidden sm:inline-flex"
+              className="btn btn-primary cta-button"
             >
               Request a Quote
             </Link>
@@ -59,7 +59,7 @@ function Header() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-3 rounded-xl text-secondary-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-200"
+              className="mobile-menu-button"
             >
               <svg
                 className="h-6 w-6"
@@ -79,8 +79,8 @@ function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden pb-4">
-            <nav className="flex flex-col space-y-1 bg-white rounded-xl p-4 shadow-xl mt-2">
+          <div className="mobile-nav">
+            <nav className="mobile-nav-content">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -94,7 +94,7 @@ function Header() {
               <Link
                 to="/contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="btn btn-primary mt-3"
+                className="btn btn-primary"
               >
                 Request a Quote
               </Link>

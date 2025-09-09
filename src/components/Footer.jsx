@@ -29,14 +29,18 @@ function Footer() {
             </p>
           </div>
 
-          {/* Services Overview */}
+          {/* Services Overview - converted to description */}
           <div className="footer-section">
-            <h3 className="footer-title">Our Services</h3>
-            <div className="flex flex-col space-y-1">
-              <span className="text-secondary-400 text-sm">Government Contracting</span>
-              <span className="text-secondary-400 text-sm">Supply Chain Management</span>
-              <span className="text-secondary-400 text-sm">Procurement Consulting</span>
-              <span className="text-secondary-400 text-sm">Contract-Ready Support</span>
+            <h3 className="footer-title">Procurement Excellence</h3>
+            <div className="flex flex-col space-y-2">
+              <p className="text-secondary-300 text-sm">
+                Specializing in government contracting, supply chain management, and procurement consulting with full regulatory compliance.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                <span className="text-xs bg-primary-900 text-primary-200 px-2 py-1 rounded">Government Certified</span>
+                <span className="text-xs bg-primary-900 text-primary-200 px-2 py-1 rounded">15,000+ Products</span>
+                <span className="text-xs bg-primary-900 text-primary-200 px-2 py-1 rounded">24/7 Support</span>
+              </div>
             </div>
           </div>
 
