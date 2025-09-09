@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -24,9 +25,22 @@ function Contact() {
     setSubmitStatus(null)
     
     try {
-      // Create professional email format with all form fields
-      const subject = `Quote Request from ${formData.name}`
-      const body = `Name: ${formData.name}
+      // EmailJS configuration from environment variables
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_default'
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_default'
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'public_key_default'
+      
+      // Prepare email template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        from_phone: formData.phone || 'Not provided',
+        message: formData.message,
+        to_email_primary: import.meta.env.VITE_PRIMARY_EMAIL || 'joe.root@quantumsrv.com',
+        to_email_secondary: import.meta.env.VITE_SECONDARY_EMAIL || 'jack.baker@quantumsrv.com',
+        subject: `Quote Request from ${formData.name}`,
+        formatted_message: `
+Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone || 'Not provided'}
 
@@ -35,28 +49,50 @@ ${formData.message}
 
 ---
 This request was submitted through the Quantum Concierge Services website.
+        `
+      }
 
-Please also send a copy to jack.baker@quantumsrv.com`
-
-      // Create mailto link for primary recipient with CC to secondary
-      const mailtoLinkPrimary = `mailto:joe.root@quantumsrv.com?cc=jack.baker@quantumsrv.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-      
-      // Open email client with both recipients
-      window.open(mailtoLinkPrimary, '_blank')
-      
-      // Show success message
-      setSubmitStatus('success')
-      
-      // Reset form after successful submission
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          message: ''
-        })
-        setSubmitStatus(null)
-      }, 5000)
+      // Initialize EmailJS if not already done
+      if (publicKey !== 'public_key_default') {
+        emailjs.init(publicKey)
+        
+        // Send email using EmailJS
+        const result = await emailjs.send(serviceId, templateId, templateParams)
+        console.log('Email sent successfully:', result)
+        
+        // Show success message
+        setSubmitStatus('success')
+        
+        // Reset form after successful submission
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            message: ''
+          })
+          setSubmitStatus(null)
+        }, 5000)
+      } else {
+        // Fallback to mailto if EmailJS not configured
+        console.warn('EmailJS not configured, falling back to mailto')
+        const subject = `Quote Request from ${formData.name}`
+        const body = templateParams.formatted_message
+        const mailtoLinkPrimary = `mailto:joe.root@quantumsrv.com?cc=jack.baker@quantumsrv.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+        
+        window.open(mailtoLinkPrimary, '_blank')
+        setSubmitStatus('success')
+        
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            message: ''
+          })
+          setSubmitStatus(null)
+        }, 5000)
+      }
       
     } catch (error) {
       console.error('Error sending email:', error)
@@ -179,7 +215,7 @@ Please also send a copy to jack.baker@quantumsrv.com`
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <p className="text-emerald-700 font-medium">
-                    Your request has been submitted successfully. Our team will contact you shortly.
+                    Your request has been submitted successfully! Our team will contact you shortly.
                   </p>
                 </div>
               </div>
@@ -200,7 +236,7 @@ Please also send a copy to jack.baker@quantumsrv.com`
 
             <div className="mt-6 text-sm text-secondary-600">
               <p>* Required fields</p>
-              <p className="mt-2">Your request will be sent to both joe.root@quantumsrv.com and jack.baker@quantumsrv.com for fastest response.</p>
+              <p className="mt-2">Your request will be automatically delivered to both joe.root@quantumsrv.com and jack.baker@quantumsrv.com for fastest response.</p>
             </div>
           </div>
 

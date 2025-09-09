@@ -35,28 +35,25 @@ function Team() {
   }
 
   return (
-    <div className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="section-modern section-light">
+      <div className="container">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-800 mb-6">
+        <div className="text-center mb-16 animate-fade-up">
+          <h1 className="section-title">
             Our Team
           </h1>
-          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
+          <p className="section-subtitle">
             Meet the dedicated professionals who make Quantum Concierge Services your trusted procurement partner
           </p>
         </div>
 
         {/* Team Members Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="team-grid mb-16">
           {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 text-center"
-            >
+            <div key={index} className="card team-card">
               {/* Profile Image/Initials */}
               <div className="mb-6">
-                <div className="bg-primary-600 text-white w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold mx-auto">
+                <div className="card-icon mx-auto">
                   {getInitials(member.name)}
                 </div>
               </div>
@@ -70,7 +67,7 @@ function Team() {
               </p>
               
               {/* Description */}
-              <p className="text-secondary-600 mb-6">
+              <p className="text-secondary-600 mb-6 flex-grow">
                 {member.description}
               </p>
               
