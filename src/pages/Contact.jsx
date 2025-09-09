@@ -7,6 +7,8 @@ function Contact() {
     phone: '',
     message: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', or null
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -16,12 +18,15 @@ function Contact() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus(null)
     
-    // Create mailto link with form data
-    const subject = `Quote Request from ${formData.name}`
-    const body = `Name: ${formData.name}
+    try {
+      // Create professional email format with all form fields
+      const subject = `Quote Request from ${formData.name}`
+      const body = `Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone || 'Not provided'}
 
@@ -29,12 +34,36 @@ Message:
 ${formData.message}
 
 ---
-This request was submitted through the Quantum Concierge Services website.`
+This request was submitted through the Quantum Concierge Services website.
 
-    const mailtoLink = `mailto:joe@quantumsrv.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    
-    // Open default email client
-    window.location.href = mailtoLink
+Please also send a copy to jack.baker@quantumsrv.com`
+
+      // Create mailto link for primary recipient with CC to secondary
+      const mailtoLinkPrimary = `mailto:joe.root@quantumsrv.com?cc=jack.baker@quantumsrv.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      
+      // Open email client with both recipients
+      window.open(mailtoLinkPrimary, '_blank')
+      
+      // Show success message
+      setSubmitStatus('success')
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        })
+        setSubmitStatus(null)
+      }, 5000)
+      
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -120,18 +149,58 @@ This request was submitted through the Quantum Concierge Services website.`
 
               <button
                 type="submit"
-                className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary-700 transition-colors duration-200 flex items-center justify-center"
+                disabled={isSubmitting}
+                className="w-full bg-primary-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-primary-700 disabled:bg-primary-400 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center"
               >
-                <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Send Quote Request
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Send Quote Request
+                  </>
+                )}
               </button>
             </form>
 
+            {/* Success/Error Messages */}
+            {submitStatus === 'success' && (
+              <div className="mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+                <div className="flex items-center">
+                  <svg className="h-5 w-5 text-emerald-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <p className="text-emerald-700 font-medium">
+                    Your request has been submitted successfully. Our team will contact you shortly.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div className="flex items-center">
+                  <svg className="h-5 w-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.864-.833-2.634 0L4.168 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                  <p className="text-red-700 font-medium">
+                    There was an error submitting your request. Please try again or contact us directly at joe.root@quantumsrv.com
+                  </p>
+                </div>
+              </div>
+            )}
+
             <div className="mt-6 text-sm text-secondary-600">
               <p>* Required fields</p>
-              <p className="mt-2">This form will open your default email client to send your request directly to our procurement team.</p>
+              <p className="mt-2">Your request will be sent to both joe.root@quantumsrv.com and jack.baker@quantumsrv.com for fastest response.</p>
             </div>
           </div>
 
@@ -159,10 +228,10 @@ This request was submitted through the Quantum Concierge Services website.`
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <a 
-                    href="mailto:joe@quantumsrv.com"
+                    href="mailto:joe.root@quantumsrv.com"
                     className="text-secondary-600 hover:text-primary-600 transition-colors duration-200"
                   >
-                    joe@quantumsrv.com
+                    joe.root@quantumsrv.com
                   </a>
                 </div>
 
