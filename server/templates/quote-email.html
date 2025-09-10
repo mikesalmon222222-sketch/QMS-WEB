@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Request - Quantum Concierge Services</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .info-section {
+            background-color: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .info-section h2 {
+            margin: 0 0 15px;
+            color: #1e40af;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .info-row {
+            display: flex;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #475569;
+            min-width: 100px;
+            margin-right: 10px;
+        }
+        .info-value {
+            color: #1e293b;
+            flex: 1;
+        }
+        .message-section {
+            background-color: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .message-section h3 {
+            margin: 0 0 15px;
+            color: #1e40af;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .message-content {
+            white-space: pre-wrap;
+            color: #334155;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .footer {
+            background-color: #1e293b;
+            color: #cbd5e1;
+            padding: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .priority-badge {
+            background-color: #fbbf24;
+            color: #92400e;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .timestamp {
+            color: #64748b;
+            font-size: 13px;
+            text-align: right;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+            .header, .content, .footer {
+                padding: 20px;
+            }
+            .info-row {
+                flex-direction: column;
+            }
+            .info-label {
+                margin-bottom: 5px;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 New Quote Request</h1>
+            <p>Quantum Concierge Services</p>
+        </div>
+        
+        <div class="content">
+            <div class="priority-badge">🚨 Quote Request</div>
+            
+            <p>A new quote request has been submitted through the QCS website. Please review the details below and respond promptly to maintain our excellent customer service standards.</p>
+            
+            <div class="info-section">
+                <h2>Customer Information</h2>
+                <div class="info-row">
+                    <span class="info-label">Name:</span>
+                    <span class="info-value">{{name}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value"><a href="mailto:{{email}}" style="color: #3b82f6;">{{email}}</a></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Phone:</span>
+                    <span class="info-value">{{phone}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Submitted:</span>
+                    <span class="info-value">{{timestamp}}</span>
+                </div>
+            </div>
+            
+            <div class="message-section">
+                <h3>📝 Request Details</h3>
+                <div class="message-content">{{message}}</div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; padding: 20px; border-radius: 8px; text-align: center; margin: 25px 0;">
+                <h3 style="margin: 0 0 10px; font-size: 16px;">⚡ Next Steps</h3>
+                <p style="margin: 0; font-size: 14px; opacity: 0.95;">
+                    Please respond to this quote request within 24 hours to maintain our service excellence standards. Reply directly to <strong>{{email}}</strong> or call the customer using the provided phone number.
+                </p>
+            </div>
+            
+            <div class="timestamp">
+                📨 Email generated automatically on {{timestamp}}
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Quantum Concierge Services</strong><br>
+            Professional Procurement Solutions</p>
+            <p>
+                <a href="mailto:joe.root@quantumsrv.com">joe.root@quantumsrv.com</a> | 
+                <a href="tel:+18592872983">+1 859-287-2983</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 12px; opacity: 0.7;">
+                This email was sent to notify you of a new quote request. Please do not reply to this automated message.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Quantum Concierge Services</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 15px 0 0;
+            opacity: 0.95;
+            font-size: 18px;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #1e293b;
+            margin-bottom: 25px;
+        }
+        .highlight-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0ea5e9;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .highlight-section h2 {
+            margin: 0 0 15px;
+            color: #0c4a6e;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .response-time {
+            background-color: #fef3c7;
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 25px 0;
+            font-weight: 600;
+        }
+        .contact-info {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .contact-info h3 {
+            margin: 0 0 15px;
+            color: #1e40af;
+            font-size: 18px;
+        }
+        .contact-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .contact-icon {
+            width: 20px;
+            margin-right: 12px;
+            color: #3b82f6;
+        }
+        .contact-value {
+            color: #1e293b;
+        }
+        .contact-value a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            background-color: #1e293b;
+            color: #cbd5e1;
+            padding: 30px;
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .footer-description {
+            margin-bottom: 20px;
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        .footer-links {
+            font-size: 14px;
+        }
+        .footer-links a {
+            color: #60a5fa;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .timestamp {
+            color: #64748b;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                box-shadow: none;
+            }
+            .header, .content, .footer {
+                padding: 25px 20px;
+            }
+            .contact-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .contact-icon {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✅ Thank You!</h1>
+            <p>Your {{type}} has been received</p>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                Dear {{name}},
+            </div>
+            
+            <p>Thank you for contacting Quantum Concierge Services! We have successfully received your {{type}} and appreciate your interest in our professional procurement solutions.</p>
+            
+            <div class="highlight-section">
+                <h2>🎯 What Happens Next?</h2>
+                <p>Our experienced procurement team will carefully review your submission and prepare a customized response that addresses your specific needs. We pride ourselves on delivering personalized solutions that exceed expectations.</p>
+            </div>
+            
+            <div class="response-time">
+                ⏰ <strong>Expected Response Time:</strong> Within 24 hours during business days
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; padding: 25px; margin: 25px 0; text-align: center;">
+                <h3 style="margin: 0 0 15px; color: #92400e;">🚨 Urgent Request?</h3>
+                <p style="margin: 0; color: #92400e; font-size: 14px;">
+                    If you have an urgent procurement need or tight deadline, please call us directly at <strong>+1 859-287-2983</strong> for immediate assistance.
+                </p>
+            </div>
+            
+            <div class="contact-info">
+                <h3>📞 Contact Information</h3>
+                <div class="contact-row">
+                    <span class="contact-icon">👤</span>
+                    <span class="contact-value"><strong>Joe Root</strong> - Manager Procurement</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-icon">📧</span>
+                    <span class="contact-value"><a href="mailto:{{supportEmail}}">{{supportEmail}}</a></span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-icon">📱</span>
+                    <span class="contact-value"><a href="tel:+18592872983">+1 859-287-2983</a></span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-icon">🕒</span>
+                    <span class="contact-value">Monday - Friday: 8:00 AM - 6:00 PM EST</span>
+                </div>
+            </div>
+            
+            <p>In the meantime, feel free to explore our website to learn more about our comprehensive procurement services, core values, and the experienced team that makes QCS your trusted partner in procurement excellence.</p>
+            
+            <p style="color: #059669; font-weight: 600;">We look forward to serving your procurement needs!</p>
+            
+            <div class="timestamp">
+                Confirmation sent on {{timestamp}}
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-logo">Quantum Concierge Services</div>
+            <div class="footer-description">Professional Procurement Solutions</div>
+            <div class="footer-links">
+                <a href="https://quantumconciergeservices.com">Website</a>
+                <a href="mailto:joe.root@quantumsrv.com">Email</a>
+                <a href="tel:+18592872983">Call</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 12px; opacity: 0.6;">
+                This is an automated confirmation email. Please do not reply directly to this message.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
