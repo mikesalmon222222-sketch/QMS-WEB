@@ -41,8 +41,19 @@ const validateQuoteRequest = [
   body('phone')
     .optional({ nullable: true, checkFalsy: true })
     .trim()
-    .isMobilePhone('any', { strictMode: false })
-    .withMessage('Please provide a valid phone number'),
+    .custom((value) => {
+      if (!value) return true; // Optional field
+      
+      // Remove common formatting characters
+      const cleanPhone = value.replace(/[\s\-\(\)+\.]/g, '');
+      
+      // Check if it's a reasonable phone number (6-15 digits)
+      if (!/^\d{6,15}$/.test(cleanPhone)) {
+        throw new Error('Please provide a valid phone number');
+      }
+      
+      return true;
+    }),
     
   body('message')
     .trim()
@@ -90,8 +101,19 @@ const validateContactForm = [
   body('phone')
     .optional({ nullable: true, checkFalsy: true })
     .trim()
-    .isMobilePhone('any', { strictMode: false })
-    .withMessage('Please provide a valid phone number'),
+    .custom((value) => {
+      if (!value) return true; // Optional field
+      
+      // Remove common formatting characters
+      const cleanPhone = value.replace(/[\s\-\(\)+\.]/g, '');
+      
+      // Check if it's a reasonable phone number (6-15 digits)
+      if (!/^\d{6,15}$/.test(cleanPhone)) {
+        throw new Error('Please provide a valid phone number');
+      }
+      
+      return true;
+    }),
     
   body('subject')
     .optional({ nullable: true, checkFalsy: true })
