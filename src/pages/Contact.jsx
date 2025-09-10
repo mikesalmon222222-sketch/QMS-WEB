@@ -1,5 +1,14 @@
 import { useState } from 'react'
-import emailjs from '@emailjs/browser'
+import { 
+  submitQuoteRequest, 
+  getErrorMessage, 
+  isNetworkError, 
+  isServerError,
+  validateEmail,
+  validateName,
+  validateMessage,
+  sanitizeFormData
+} from '../utils/api'
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -10,6 +19,26 @@ function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', or null
+  const [errorMessage, setErrorMessage] = useState('')
+  const [validationErrors, setValidationErrors] = useState({})
+
+  const validateForm = (data) => {
+    const errors = {}
+
+    if (!validateName(data.name)) {
+      errors.name = 'Name must be between 2 and 100 characters'
+    }
+
+    if (!validateEmail(data.email)) {
+      errors.email = 'Please enter a valid email address'
+    }
+
+    if (!validateMessage(data.message)) {
+      errors.message = 'Message must be between 10 and 2000 characters'
+    }
+
+    return errors
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -17,86 +46,69 @@ function Contact() {
       ...prev,
       [name]: value
     }))
+    
+    // Clear validation error for this field when user starts typing
+    if (validationErrors[name]) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }))
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus(null)
+    setErrorMessage('')
+    setValidationErrors({})
     
     try {
-      // EmailJS configuration from environment variables
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_default'
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_default'
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'public_key_default'
+      // Sanitize form data
+      const sanitizedData = sanitizeFormData(formData)
       
-      // Prepare email template parameters
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        from_phone: formData.phone || 'Not provided',
-        message: formData.message,
-        to_email_primary: import.meta.env.VITE_PRIMARY_EMAIL || 'joe.root@quantumsrv.com',
-        to_email_secondary: import.meta.env.VITE_SECONDARY_EMAIL || 'jack.baker@quantumsrv.com',
-        subject: `Quote Request from ${formData.name}`,
-        formatted_message: `
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone || 'Not provided'}
-
-Message:
-${formData.message}
-
----
-This request was submitted through the Quantum Concierge Services website.
-        `
+      // Validate form data
+      const errors = validateForm(sanitizedData)
+      if (Object.keys(errors).length > 0) {
+        setValidationErrors(errors)
+        setSubmitStatus('error')
+        setErrorMessage('Please correct the errors below')
+        return
       }
-
-      // Initialize EmailJS if not already done
-      if (publicKey !== 'public_key_default') {
-        emailjs.init(publicKey)
-        
-        // Send email using EmailJS
-        const result = await emailjs.send(serviceId, templateId, templateParams)
-        console.log('Email sent successfully:', result)
-        
-        // Show success message
-        setSubmitStatus('success')
-        
-        // Reset form after successful submission
-        setTimeout(() => {
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            message: ''
-          })
-          setSubmitStatus(null)
-        }, 5000)
-      } else {
-        // Fallback to mailto if EmailJS not configured
-        console.warn('EmailJS not configured, falling back to mailto')
-        const subject = `Quote Request from ${formData.name}`
-        const body = templateParams.formatted_message
-        const mailtoLinkPrimary = `mailto:joe.root@quantumsrv.com?cc=jack.baker@quantumsrv.com&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-        
-        window.open(mailtoLinkPrimary, '_blank')
-        setSubmitStatus('success')
-        
-        setTimeout(() => {
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            message: ''
-          })
-          setSubmitStatus(null)
-        }, 5000)
-      }
+      
+      console.log(`📬 Submitting quote request for ${sanitizedData.name}`)
+      
+      // Submit to backend API
+      const result = await submitQuoteRequest(sanitizedData)
+      
+      console.log('✅ Quote request submitted successfully:', result)
+      
+      // Show success message
+      setSubmitStatus('success')
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        })
+        setSubmitStatus(null)
+      }, 5000)
       
     } catch (error) {
-      console.error('Error sending email:', error)
+      console.error('❌ Quote request submission failed:', error)
+      
       setSubmitStatus('error')
+      
+      if (isNetworkError(error)) {
+        setErrorMessage('Unable to connect to server. Please check your internet connection and try again.')
+      } else if (isServerError(error)) {
+        setErrorMessage('Server error occurred. Please try again later or contact us directly.')
+      } else {
+        setErrorMessage(getErrorMessage(error))
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -131,9 +143,16 @@ This request was submitted through the Quantum Concierge Services website.
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 ${
+                    validationErrors.name 
+                      ? 'border-red-500 bg-red-50' 
+                      : 'border-secondary-300'
+                  }`}
                   placeholder="Your full name"
                 />
+                {validationErrors.name && (
+                  <p className="text-red-600 text-sm mt-1">{validationErrors.name}</p>
+                )}
               </div>
 
               <div>
@@ -147,9 +166,16 @@ This request was submitted through the Quantum Concierge Services website.
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 ${
+                    validationErrors.email 
+                      ? 'border-red-500 bg-red-50' 
+                      : 'border-secondary-300'
+                  }`}
                   placeholder="your.email@example.com"
                 />
+                {validationErrors.email && (
+                  <p className="text-red-600 text-sm mt-1">{validationErrors.email}</p>
+                )}
               </div>
 
               <div>
@@ -178,9 +204,16 @@ This request was submitted through the Quantum Concierge Services website.
                   rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 ${
+                    validationErrors.message 
+                      ? 'border-red-500 bg-red-50' 
+                      : 'border-secondary-300'
+                  }`}
                   placeholder="Please describe your procurement needs, including types of products, quantities, timelines, and any specific requirements..."
                 />
+                {validationErrors.message && (
+                  <p className="text-red-600 text-sm mt-1">{validationErrors.message}</p>
+                )}
               </div>
 
               <button
@@ -215,7 +248,7 @@ This request was submitted through the Quantum Concierge Services website.
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <p className="text-emerald-700 font-medium">
-                    Your request has been submitted successfully! Our team will contact you shortly.
+                    Your quote request has been sent successfully! We'll contact you within 24 hours.
                   </p>
                 </div>
               </div>
@@ -227,16 +260,19 @@ This request was submitted through the Quantum Concierge Services website.
                   <svg className="h-5 w-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.864-.833-2.634 0L4.168 16.5c-.77.833.192 2.5 1.732 2.5z" />
                   </svg>
-                  <p className="text-red-700 font-medium">
-                    There was an error submitting your request. Please try again or contact us directly at joe.root@quantumsrv.com
-                  </p>
+                  <div>
+                    <p className="text-red-700 font-medium">{errorMessage || 'Failed to send quote request'}</p>
+                    <p className="text-red-600 text-sm mt-1">
+                      Please try again or contact us directly at joe.root@quantumsrv.com
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
 
             <div className="mt-6 text-sm text-secondary-600">
               <p>* Required fields</p>
-              <p className="mt-2">Your request will be automatically delivered to both joe.root@quantumsrv.com and jack.baker@quantumsrv.com for fastest response.</p>
+              <p className="mt-2">Your request will be sent to our procurement team at joe.root@quantumsrv.com and jack.baker@quantumsrv.com for fastest response.</p>
             </div>
           </div>
 

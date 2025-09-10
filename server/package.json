@@ -1,0 +1,10 @@
+{
+  "name": "qms-backend",
+  "version": "1.0.0",
+  "description": "QMS Email API Backend",
+  "type": "commonjs",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}
